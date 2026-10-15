@@ -1,0 +1,6 @@
+{
+  "name": "Personal Finance & Smart Budget Tracker",
+  "description": "Track Smarter. Spend Better. Save More. Professional full-stack financial analytics, budget management, overspending alerts, and multi-workspace accounting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

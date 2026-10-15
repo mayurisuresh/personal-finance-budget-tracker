@@ -1,0 +1,507 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-mono, .tabular-nums {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ==========================================================================
+   Centralized Theme Variable Palettes for 5 Core Financial Themes
+   ========================================================================== */
+
+/* 1. Professional Light */
+:root,
+html.theme-light,
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-subtle-hover: #e2e8f0;
+  --bg-input: #ffffff;
+  --border-color: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-subtle: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #94a3b8;
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-subtle: #eff6ff;
+  --accent-text: #1d4ed8;
+  --chart-grid: rgba(148, 163, 184, 0.15);
+  --chart-text: #64748b;
+}
+
+/* 2. Slate Dark */
+html.theme-dark,
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-page: #020617;
+  --bg-card: #0f172a;
+  --bg-sidebar: #0b1120;
+  --bg-subtle: #1e293b;
+  --bg-subtle-hover: #334155;
+  --bg-input: #1e293b;
+  --border-color: #1e293b;
+  --border-strong: #334155;
+  --border-subtle: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-subtle: rgba(59, 130, 246, 0.18);
+  --accent-text: #60a5fa;
+  --chart-grid: rgba(255, 255, 255, 0.08);
+  --chart-text: #94a3b8;
+}
+
+/* 3. Ocean Blue */
+html.theme-ocean,
+html[data-theme="ocean"] {
+  color-scheme: dark;
+  --bg-page: #051322;
+  --bg-card: #0b2239;
+  --bg-sidebar: #081a2d;
+  --bg-subtle: #12304f;
+  --bg-subtle-hover: #194069;
+  --bg-input: #12304f;
+  --border-color: #183e63;
+  --border-strong: #255887;
+  --border-subtle: #133352;
+  --text-main: #f0f9ff;
+  --text-muted: #93c5fd;
+  --text-subtle: #60a5fa;
+  --accent-color: #0ea5e9;
+  --accent-hover: #0284c7;
+  --accent-subtle: rgba(14, 165, 233, 0.22);
+  --accent-text: #38bdf8;
+  --chart-grid: rgba(147, 197, 253, 0.12);
+  --chart-text: #93c5fd;
+}
+
+/* 4. Forest Green */
+html.theme-forest,
+html[data-theme="forest"] {
+  color-scheme: dark;
+  --bg-page: #04170f;
+  --bg-card: #09271a;
+  --bg-sidebar: #071f15;
+  --bg-subtle: #103827;
+  --bg-subtle-hover: #184c36;
+  --bg-input: #103827;
+  --border-color: #174b34;
+  --border-strong: #246849;
+  --border-subtle: #123b29;
+  --text-main: #f0fdf4;
+  --text-muted: #86efac;
+  --text-subtle: #4ade80;
+  --accent-color: #10b981;
+  --accent-hover: #059669;
+  --accent-subtle: rgba(16, 185, 129, 0.22);
+  --accent-text: #34d399;
+  --chart-grid: rgba(134, 239, 172, 0.12);
+  --chart-text: #86efac;
+}
+
+/* 5. Warm Neutral */
+html.theme-warm,
+html[data-theme="warm"] {
+  color-scheme: light;
+  --bg-page: #f6f1ea;
+  --bg-card: #ffffff;
+  --bg-sidebar: #fbf8f4;
+  --bg-subtle: #ede5da;
+  --bg-subtle-hover: #e2d8cb;
+  --bg-input: #ffffff;
+  --border-color: #dcd0c0;
+  --border-strong: #cabaa6;
+  --border-subtle: #ede5da;
+  --text-main: #27211c;
+  --text-muted: #6b6055;
+  --text-subtle: #998c7f;
+  --accent-color: #c26a27;
+  --accent-hover: #a3541b;
+  --accent-subtle: #faefe3;
+  --accent-text: #a3541b;
+  --chart-grid: rgba(107, 96, 85, 0.12);
+  --chart-text: #6b6055;
+}
+
+/* ==========================================================================
+   Universal Dynamic Theme Application across Sidebar, Cards, Forms & Tables
+   ========================================================================== */
+
+/* Page Level Background & Body */
+html.theme-ocean,
+html.theme-forest,
+html.theme-warm,
+html.theme-dark,
+html.theme-light {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+html.theme-ocean body,
+html.theme-forest body,
+html.theme-warm body,
+html.theme-dark body,
+html.theme-light body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+/* Application Page Background */
+html.theme-ocean .bg-slate-50,
+html.theme-ocean .dark\:bg-slate-950,
+html.theme-forest .bg-slate-50,
+html.theme-forest .dark\:bg-slate-950,
+html.theme-warm .bg-slate-50,
+html.theme-warm .dark\:bg-slate-950,
+html.theme-dark .bg-slate-50,
+html.theme-dark .dark\:bg-slate-950,
+html.theme-light .bg-slate-50,
+html.theme-light .dark\:bg-slate-950 {
+  background-color: var(--bg-page) !important;
+}
+
+/* Card, Dialog, & Container Surfaces */
+html.theme-ocean .bg-white,
+html.theme-ocean .dark\:bg-slate-900,
+html.theme-forest .bg-white,
+html.theme-forest .dark\:bg-slate-900,
+html.theme-warm .bg-white,
+html.theme-warm .dark\:bg-slate-900,
+html.theme-dark .bg-white,
+html.theme-dark .dark\:bg-slate-900,
+html.theme-light .bg-white,
+html.theme-light .dark\:bg-slate-900 {
+  background-color: var(--bg-card) !important;
+}
+
+/* Sidebar and Header Surfaces */
+html.theme-ocean aside,
+html.theme-forest aside,
+html.theme-warm aside,
+html.theme-dark aside,
+html.theme-light aside,
+html.theme-ocean header,
+html.theme-forest header,
+html.theme-warm header,
+html.theme-dark header,
+html.theme-light header {
+  background-color: var(--bg-sidebar) !important;
+}
+
+/* Secondary / Subtle Surfaces (Chips, Metric Tiles, Table Headers, Dropdowns) */
+html.theme-ocean .bg-slate-100,
+html.theme-ocean .dark\:bg-slate-800,
+html.theme-ocean .dark\:bg-slate-800\/80,
+html.theme-ocean .dark\:bg-slate-800\/60,
+html.theme-ocean .dark\:bg-slate-800\/50,
+html.theme-ocean .dark\:bg-slate-900\/50,
+html.theme-forest .bg-slate-100,
+html.theme-forest .dark\:bg-slate-800,
+html.theme-forest .dark\:bg-slate-800\/80,
+html.theme-forest .dark\:bg-slate-800\/60,
+html.theme-forest .dark\:bg-slate-800\/50,
+html.theme-forest .dark\:bg-slate-900\/50,
+html.theme-warm .bg-slate-100,
+html.theme-warm .dark\:bg-slate-800,
+html.theme-warm .dark\:bg-slate-800\/80,
+html.theme-warm .dark\:bg-slate-800\/60,
+html.theme-warm .dark\:bg-slate-800\/50,
+html.theme-warm .dark\:bg-slate-900\/50,
+html.theme-dark .bg-slate-100,
+html.theme-dark .dark\:bg-slate-800,
+html.theme-dark .dark\:bg-slate-800\/80,
+html.theme-dark .dark\:bg-slate-800\/60,
+html.theme-dark .dark\:bg-slate-800\/50,
+html.theme-dark .dark\:bg-slate-900\/50,
+html.theme-light .bg-slate-100,
+html.theme-light .dark\:bg-slate-800 {
+  background-color: var(--bg-subtle) !important;
+}
+
+/* Hover States on Lists & Navigation */
+html.theme-ocean .hover\:bg-slate-100:hover,
+html.theme-ocean .dark\:hover\:bg-slate-800:hover,
+html.theme-ocean .dark\:hover\:bg-slate-700\/50:hover,
+html.theme-forest .hover\:bg-slate-100:hover,
+html.theme-forest .dark\:hover\:bg-slate-800:hover,
+html.theme-forest .dark\:hover\:bg-slate-700\/50:hover,
+html.theme-warm .hover\:bg-slate-100:hover,
+html.theme-warm .dark\:hover\:bg-slate-800:hover,
+html.theme-warm .dark\:hover\:bg-slate-700\/50:hover,
+html.theme-dark .hover\:bg-slate-100:hover,
+html.theme-dark .dark\:hover\:bg-slate-800:hover,
+html.theme-dark .dark\:hover\:bg-slate-700\/50:hover,
+html.theme-light .hover\:bg-slate-100:hover,
+html.theme-light .dark\:hover\:bg-slate-800:hover {
+  background-color: var(--bg-subtle-hover) !important;
+}
+
+/* Card & Section Borders */
+html.theme-ocean .border-slate-200,
+html.theme-ocean .border-slate-100,
+html.theme-ocean .dark\:border-slate-800,
+html.theme-forest .border-slate-200,
+html.theme-forest .border-slate-100,
+html.theme-forest .dark\:border-slate-800,
+html.theme-warm .border-slate-200,
+html.theme-warm .border-slate-100,
+html.theme-warm .dark\:border-slate-800,
+html.theme-dark .border-slate-200,
+html.theme-dark .border-slate-100,
+html.theme-dark .dark\:border-slate-800,
+html.theme-light .border-slate-200,
+html.theme-light .border-slate-100,
+html.theme-light .dark\:border-slate-800 {
+  border-color: var(--border-color) !important;
+}
+
+/* Stronger Borders for Form Controls & Separators */
+html.theme-ocean .border-slate-300,
+html.theme-ocean .dark\:border-slate-700,
+html.theme-forest .border-slate-300,
+html.theme-forest .dark\:border-slate-700,
+html.theme-warm .border-slate-300,
+html.theme-warm .dark\:border-slate-700,
+html.theme-dark .border-slate-300,
+html.theme-dark .dark\:border-slate-700,
+html.theme-light .border-slate-300,
+html.theme-light .dark\:border-slate-700 {
+  border-color: var(--border-strong) !important;
+}
+
+/* Table Dividers */
+html.theme-ocean .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.theme-ocean .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.theme-ocean .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html.theme-forest .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.theme-forest .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.theme-forest .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html.theme-warm .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.theme-warm .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.theme-warm .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html.theme-dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.theme-dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.theme-dark .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html.theme-light .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.theme-light .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html.theme-light .dark\:divide-slate-800 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--border-color) !important;
+}
+
+/* Primary Text & Headings */
+html.theme-ocean .text-slate-900,
+html.theme-ocean .text-slate-800,
+html.theme-ocean .dark\:text-white,
+html.theme-ocean .dark\:text-slate-100,
+html.theme-ocean .dark\:text-slate-200,
+html.theme-forest .text-slate-900,
+html.theme-forest .text-slate-800,
+html.theme-forest .dark\:text-white,
+html.theme-forest .dark\:text-slate-100,
+html.theme-forest .dark\:text-slate-200,
+html.theme-warm .text-slate-900,
+html.theme-warm .text-slate-800,
+html.theme-warm .dark\:text-white,
+html.theme-warm .dark\:text-slate-100,
+html.theme-warm .dark\:text-slate-200,
+html.theme-dark .text-slate-900,
+html.theme-dark .text-slate-800,
+html.theme-dark .dark\:text-white,
+html.theme-dark .dark\:text-slate-100,
+html.theme-dark .dark\:text-slate-200,
+html.theme-light .text-slate-900,
+html.theme-light .text-slate-800,
+html.theme-light .dark\:text-white,
+html.theme-light .dark\:text-slate-100 {
+  color: var(--text-main) !important;
+}
+
+/* Secondary / Body Text */
+html.theme-ocean .text-slate-700,
+html.theme-ocean .text-slate-600,
+html.theme-ocean .dark\:text-slate-300,
+html.theme-forest .text-slate-700,
+html.theme-forest .text-slate-600,
+html.theme-forest .dark\:text-slate-300,
+html.theme-warm .text-slate-700,
+html.theme-warm .text-slate-600,
+html.theme-warm .dark\:text-slate-300,
+html.theme-dark .text-slate-700,
+html.theme-dark .text-slate-600,
+html.theme-dark .dark\:text-slate-300,
+html.theme-light .text-slate-700,
+html.theme-light .text-slate-600,
+html.theme-light .dark\:text-slate-300 {
+  color: var(--text-muted) !important;
+}
+
+/* Tertiary / Subtle / Placeholder Text */
+html.theme-ocean .text-slate-500,
+html.theme-ocean .text-slate-400,
+html.theme-ocean .dark\:text-slate-400,
+html.theme-forest .text-slate-500,
+html.theme-forest .text-slate-400,
+html.theme-forest .dark\:text-slate-400,
+html.theme-warm .text-slate-500,
+html.theme-warm .text-slate-400,
+html.theme-warm .dark\:text-slate-400,
+html.theme-dark .text-slate-500,
+html.theme-dark .text-slate-400,
+html.theme-dark .dark\:text-slate-400,
+html.theme-light .text-slate-500,
+html.theme-light .text-slate-400,
+html.theme-light .dark\:text-slate-400 {
+  color: var(--text-subtle) !important;
+}
+
+/* Primary Action Buttons */
+html.theme-ocean .bg-blue-600,
+html.theme-forest .bg-blue-600,
+html.theme-warm .bg-blue-600,
+html.theme-dark .bg-blue-600,
+html.theme-light .bg-blue-600 {
+  background-color: var(--accent-color) !important;
+  color: #ffffff !important;
+}
+
+html.theme-ocean .hover\:bg-blue-700:hover,
+html.theme-forest .hover\:bg-blue-700:hover,
+html.theme-warm .hover\:bg-blue-700:hover,
+html.theme-dark .hover\:bg-blue-700:hover,
+html.theme-light .hover\:bg-blue-700:hover {
+  background-color: var(--accent-hover) !important;
+}
+
+/* Accent Text Highlights & Links */
+html.theme-ocean .text-blue-600,
+html.theme-ocean .dark\:text-blue-400,
+html.theme-forest .text-blue-600,
+html.theme-forest .dark\:text-blue-400,
+html.theme-warm .text-blue-600,
+html.theme-warm .dark\:text-blue-400,
+html.theme-dark .text-blue-600,
+html.theme-dark .dark\:text-blue-400,
+html.theme-light .text-blue-600,
+html.theme-light .dark\:text-blue-400 {
+  color: var(--accent-text) !important;
+}
+
+/* Accent Subtle Backgrounds (Active Navigation, Badges) */
+html.theme-ocean .bg-blue-50,
+html.theme-ocean .dark\:bg-blue-950\/50,
+html.theme-ocean .dark\:bg-blue-950\/40,
+html.theme-ocean .dark\:bg-blue-950\/60,
+html.theme-ocean .dark\:bg-blue-950\/30,
+html.theme-forest .bg-blue-50,
+html.theme-forest .dark\:bg-blue-950\/50,
+html.theme-forest .dark\:bg-blue-950\/40,
+html.theme-forest .dark\:bg-blue-950\/60,
+html.theme-forest .dark\:bg-blue-950\/30,
+html.theme-warm .bg-blue-50,
+html.theme-warm .dark\:bg-blue-950\/50,
+html.theme-warm .dark\:bg-blue-950\/40,
+html.theme-warm .dark\:bg-blue-950\/60,
+html.theme-warm .dark\:bg-blue-950\/30,
+html.theme-dark .bg-blue-50,
+html.theme-dark .dark\:bg-blue-950\/50,
+html.theme-dark .dark\:bg-blue-950\/40,
+html.theme-dark .dark\:bg-blue-950\/60,
+html.theme-dark .dark\:bg-blue-950\/30,
+html.theme-light .bg-blue-50,
+html.theme-light .dark\:bg-blue-950\/50 {
+  background-color: var(--accent-subtle) !important;
+}
+
+/* Accent Border & Ring Highlights */
+html.theme-ocean .border-blue-600,
+html.theme-ocean .ring-blue-600,
+html.theme-forest .border-blue-600,
+html.theme-forest .ring-blue-600,
+html.theme-warm .border-blue-600,
+html.theme-warm .ring-blue-600,
+html.theme-dark .border-blue-600,
+html.theme-dark .ring-blue-600,
+html.theme-light .border-blue-600,
+html.theme-light .ring-blue-600 {
+  border-color: var(--accent-color) !important;
+}
+
+/* Form Controls (Inputs, Selects, Textareas) */
+html.theme-ocean input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.theme-ocean select,
+html.theme-ocean textarea,
+html.theme-forest input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.theme-forest select,
+html.theme-forest textarea,
+html.theme-warm input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.theme-warm select,
+html.theme-warm textarea,
+html.theme-dark input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.theme-dark select,
+html.theme-dark textarea,
+html.theme-light input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html.theme-light select,
+html.theme-light textarea {
+  background-color: var(--bg-input) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-strong) !important;
+}
+
+/* Financial Tables Styling */
+html.theme-ocean thead,
+html.theme-forest thead,
+html.theme-warm thead,
+html.theme-dark thead,
+html.theme-light thead {
+  background-color: var(--bg-subtle) !important;
+}
+
+html.theme-ocean th,
+html.theme-forest th,
+html.theme-warm th,
+html.theme-dark th,
+html.theme-light th {
+  color: var(--text-muted) !important;
+}
+
+html.theme-ocean tbody tr:hover,
+html.theme-forest tbody tr:hover,
+html.theme-warm tbody tr:hover,
+html.theme-dark tbody tr:hover,
+html.theme-light tbody tr:hover {
+  background-color: var(--bg-subtle-hover) !important;
+}
+
+/* Custom Financial Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-subtle, rgba(148, 163, 184, 0.4));
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted, rgba(148, 163, 184, 0.7));
+}
