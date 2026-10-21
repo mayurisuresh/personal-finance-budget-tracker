@@ -36,7 +36,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+// Port configuration: uses process.env.PORT first (e.g. for Render or cloud deployment),
+// falling back to 3000 for local development (and AI Studio dev proxy)
+const isAiStudioDev = process.env.DISABLE_HMR === 'true' && process.env.NODE_ENV !== 'production';
+const PORT = process.env.PORT && !isAiStudioDev ? parseInt(process.env.PORT, 10) : 3000;
 const httpServer = http.createServer(app);
 
 // Security & Parsing Middlewares
@@ -167,16 +170,24 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    // In Prod: Serve static build
+    // In Prod: Serve static build from dist directory
     const distPath = path.resolve(__dirname, 'dist');
     app.use(express.static(distPath));
+
+    // API 404 handler so unmatched API routes don't return index.html
+    app.all('/api/*', (req, res) => {
+      res.status(404).json({ success: false, message: 'API route not found.' });
+    });
+
+    // SPA fallback: send index.html for frontend navigation routes
     app.get('*', (req, res) => {
       res.sendFile(path.resolve(distPath, 'index.html'));
     });
   }
 
+  // Bind Express server to 0.0.0.0 on configured PORT
   httpServer.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server listening on http://0.0.0.0:${PORT}`);
+    console.log(`Server listening on http://0.0.0.0:${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });
 
   // Non-blocking database connection attempt in background so dev server starts immediately
