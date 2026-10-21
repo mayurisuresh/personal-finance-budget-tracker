@@ -258,6 +258,43 @@
       "createdAt": "2026-10-21T19:14:02.172Z",
       "updatedAt": "2026-10-21T19:14:02.174Z",
       "activeWorkspaceId": "id_1792610042173_v2rscm7"
+    },
+    {
+      "name": "QA Test Engineer",
+      "email": "qa_user_1792611704212@example.com",
+      "passwordHash": "$2b$10$6l97VdOr0kseGJGaSpVHHOR0d.XlJJjEGS7VnsogXjX4jE5JYe8d2",
+      "financialProfile": "Freelancer",
+      "financialPriorities": [
+        "Track income",
+        "Monitor daily expenses",
+        "Save money"
+      ],
+      "currency": "INR",
+      "preferences": {
+        "theme": "light",
+        "accentColor": "#2563EB",
+        "currency": "INR",
+        "defaultDateRange": "month",
+        "visibleCards": [
+          "balance",
+          "cashflow",
+          "income",
+          "expenses",
+          "budgets",
+          "savings",
+          "bills",
+          "categories"
+        ],
+        "alertThresholds": {
+          "warn": 80,
+          "danger": 100
+        }
+      },
+      "_id": "id_1792611704377_a9rd92v",
+      "id": "id_1792611704377_a9rd92v",
+      "createdAt": "2026-10-21T19:41:44.377Z",
+      "updatedAt": "2026-10-21T19:41:44.379Z",
+      "activeWorkspaceId": "id_1792611704378_tlfpt1n"
     }
   ],
   "workspaces": [
@@ -422,6 +459,24 @@
       "id": "id_1792610042173_v2rscm7",
       "createdAt": "2026-10-21T19:14:02.173Z",
       "updatedAt": "2026-10-21T19:14:02.173Z"
+    },
+    {
+      "name": "QA's Finances",
+      "type": "personal",
+      "ownerId": "id_1792611704377_a9rd92v",
+      "currency": "INR",
+      "members": [
+        {
+          "userId": "id_1792611704377_a9rd92v",
+          "role": "owner",
+          "email": "qa_user_1792611704212@example.com",
+          "status": "active"
+        }
+      ],
+      "_id": "id_1792611704378_tlfpt1n",
+      "id": "id_1792611704378_tlfpt1n",
+      "createdAt": "2026-10-21T19:41:44.378Z",
+      "updatedAt": "2026-10-21T19:41:44.378Z"
     }
   ],
   "accounts": [
@@ -746,6 +801,50 @@
       "id": "id_1792610042209_tqwrucb",
       "createdAt": "2026-10-21T19:14:02.209Z",
       "updatedAt": "2026-10-21T19:14:02.243Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Primary Checking / Bank",
+      "type": "bank",
+      "balance": 25000,
+      "currency": "INR",
+      "institution": "HDFC / State Bank",
+      "accountNumberLast4": "4821",
+      "isDefault": true,
+      "_id": "id_1792611704399_1zq6eh9",
+      "id": "id_1792611704399_1zq6eh9",
+      "createdAt": "2026-10-21T19:41:44.399Z",
+      "updatedAt": "2026-10-21T19:41:44.399Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Cash Wallet",
+      "type": "cash",
+      "balance": 3500,
+      "currency": "INR",
+      "institution": "Cash in Hand",
+      "isDefault": false,
+      "_id": "id_1792611704400_wuq2mg1",
+      "id": "id_1792611704400_wuq2mg1",
+      "createdAt": "2026-10-21T19:41:44.400Z",
+      "updatedAt": "2026-10-21T19:41:44.400Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Primary Checking Wallet",
+      "type": "bank",
+      "balance": 61000,
+      "currency": "INR",
+      "institution": "",
+      "accountNumberLast4": "",
+      "isDefault": false,
+      "_id": "id_1792611704418_3va2ild",
+      "id": "id_1792611704418_3va2ild",
+      "createdAt": "2026-10-21T19:41:44.418Z",
+      "updatedAt": "2026-10-21T19:41:44.447Z"
     }
   ],
   "categories": [
@@ -3260,6 +3359,320 @@
       "id": "id_1792610042191_y9fjc5k",
       "createdAt": "2026-10-21T19:14:02.191Z",
       "updatedAt": "2026-10-21T19:14:02.191Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Salary",
+      "type": "income",
+      "icon": "Briefcase",
+      "color": "#10B981",
+      "isCustom": false,
+      "_id": "id_1792611704380_0we6h21",
+      "id": "id_1792611704380_0we6h21",
+      "createdAt": "2026-10-21T19:41:44.380Z",
+      "updatedAt": "2026-10-21T19:41:44.380Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Business income",
+      "type": "income",
+      "icon": "Building",
+      "color": "#3B82F6",
+      "isCustom": false,
+      "_id": "id_1792611704381_0gxs4l8",
+      "id": "id_1792611704381_0gxs4l8",
+      "createdAt": "2026-10-21T19:41:44.381Z",
+      "updatedAt": "2026-10-21T19:41:44.381Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Freelance income",
+      "type": "income",
+      "icon": "Laptop",
+      "color": "#6366F1",
+      "isCustom": false,
+      "_id": "id_1792611704382_8emi7dn",
+      "id": "id_1792611704382_8emi7dn",
+      "createdAt": "2026-10-21T19:41:44.382Z",
+      "updatedAt": "2026-10-21T19:41:44.382Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Daily wages",
+      "type": "income",
+      "icon": "Coins",
+      "color": "#F59E0B",
+      "isCustom": false,
+      "_id": "id_1792611704383_1jbubcm",
+      "id": "id_1792611704383_1jbubcm",
+      "createdAt": "2026-10-21T19:41:44.383Z",
+      "updatedAt": "2026-10-21T19:41:44.383Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Allowance",
+      "type": "income",
+      "icon": "Gift",
+      "color": "#EC4899",
+      "isCustom": false,
+      "_id": "id_1792611704383_j5aji4g",
+      "id": "id_1792611704383_j5aji4g",
+      "createdAt": "2026-10-21T19:41:44.383Z",
+      "updatedAt": "2026-10-21T19:41:44.383Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Rental income",
+      "type": "income",
+      "icon": "Home",
+      "color": "#8B5CF6",
+      "isCustom": false,
+      "_id": "id_1792611704384_48o634b",
+      "id": "id_1792611704384_48o634b",
+      "createdAt": "2026-10-21T19:41:44.384Z",
+      "updatedAt": "2026-10-21T19:41:44.384Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Investment income",
+      "type": "income",
+      "icon": "TrendingUp",
+      "color": "#14B8A6",
+      "isCustom": false,
+      "_id": "id_1792611704385_moba2kp",
+      "id": "id_1792611704385_moba2kp",
+      "createdAt": "2026-10-21T19:41:44.385Z",
+      "updatedAt": "2026-10-21T19:41:44.385Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Other income",
+      "type": "income",
+      "icon": "PlusCircle",
+      "color": "#64748B",
+      "isCustom": false,
+      "_id": "id_1792611704386_fftb7pj",
+      "id": "id_1792611704386_fftb7pj",
+      "createdAt": "2026-10-21T19:41:44.386Z",
+      "updatedAt": "2026-10-21T19:41:44.386Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Food and groceries",
+      "type": "expense",
+      "icon": "Utensils",
+      "color": "#EF4444",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704387_uug4e3j",
+      "id": "id_1792611704387_uug4e3j",
+      "createdAt": "2026-10-21T19:41:44.387Z",
+      "updatedAt": "2026-10-21T19:41:44.387Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Education and books",
+      "type": "expense",
+      "icon": "BookOpen",
+      "color": "#3B82F6",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704388_bk4d8gi",
+      "id": "id_1792611704388_bk4d8gi",
+      "createdAt": "2026-10-21T19:41:44.388Z",
+      "updatedAt": "2026-10-21T19:41:44.388Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Transportation",
+      "type": "expense",
+      "icon": "Car",
+      "color": "#F97316",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704388_jgt2sjl",
+      "id": "id_1792611704388_jgt2sjl",
+      "createdAt": "2026-10-21T19:41:44.388Z",
+      "updatedAt": "2026-10-21T19:41:44.388Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Rent and housing",
+      "type": "expense",
+      "icon": "Home",
+      "color": "#8B5CF6",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704389_hdm9eu2",
+      "id": "id_1792611704389_hdm9eu2",
+      "createdAt": "2026-10-21T19:41:44.389Z",
+      "updatedAt": "2026-10-21T19:41:44.389Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Utilities",
+      "type": "expense",
+      "icon": "Zap",
+      "color": "#EAB308",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704390_utrmetp",
+      "id": "id_1792611704390_utrmetp",
+      "createdAt": "2026-10-21T19:41:44.390Z",
+      "updatedAt": "2026-10-21T19:41:44.390Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Healthcare",
+      "type": "expense",
+      "icon": "Activity",
+      "color": "#EC4899",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704391_oz5kj7d",
+      "id": "id_1792611704391_oz5kj7d",
+      "createdAt": "2026-10-21T19:41:44.391Z",
+      "updatedAt": "2026-10-21T19:41:44.391Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Shopping",
+      "type": "expense",
+      "icon": "ShoppingBag",
+      "color": "#F43F5E",
+      "isDiscretionary": true,
+      "isCustom": false,
+      "_id": "id_1792611704392_i33daz9",
+      "id": "id_1792611704392_i33daz9",
+      "createdAt": "2026-10-21T19:41:44.392Z",
+      "updatedAt": "2026-10-21T19:41:44.392Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Entertainment",
+      "type": "expense",
+      "icon": "Film",
+      "color": "#A855F7",
+      "isDiscretionary": true,
+      "isCustom": false,
+      "_id": "id_1792611704392_e9z7yns",
+      "id": "id_1792611704392_e9z7yns",
+      "createdAt": "2026-10-21T19:41:44.392Z",
+      "updatedAt": "2026-10-21T19:41:44.392Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Travel",
+      "type": "expense",
+      "icon": "Plane",
+      "color": "#06B6D4",
+      "isDiscretionary": true,
+      "isCustom": false,
+      "_id": "id_1792611704393_9p3370w",
+      "id": "id_1792611704393_9p3370w",
+      "createdAt": "2026-10-21T19:41:44.393Z",
+      "updatedAt": "2026-10-21T19:41:44.393Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Subscriptions",
+      "type": "expense",
+      "icon": "CreditCard",
+      "color": "#6366F1",
+      "isDiscretionary": true,
+      "isCustom": false,
+      "_id": "id_1792611704394_wcz5mv4",
+      "id": "id_1792611704394_wcz5mv4",
+      "createdAt": "2026-10-21T19:41:44.394Z",
+      "updatedAt": "2026-10-21T19:41:44.394Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Business expenses",
+      "type": "expense",
+      "icon": "Briefcase",
+      "color": "#0EA5E9",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704395_tntk5gx",
+      "id": "id_1792611704395_tntk5gx",
+      "createdAt": "2026-10-21T19:41:44.395Z",
+      "updatedAt": "2026-10-21T19:41:44.395Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Loan repayments",
+      "type": "expense",
+      "icon": "ShieldAlert",
+      "color": "#DC2626",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704395_i4k608c",
+      "id": "id_1792611704395_i4k608c",
+      "createdAt": "2026-10-21T19:41:44.395Z",
+      "updatedAt": "2026-10-21T19:41:44.395Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Insurance",
+      "type": "expense",
+      "icon": "ShieldCheck",
+      "color": "#10B981",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704396_px7ch2a",
+      "id": "id_1792611704396_px7ch2a",
+      "createdAt": "2026-10-21T19:41:44.396Z",
+      "updatedAt": "2026-10-21T19:41:44.396Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Family expenses",
+      "type": "expense",
+      "icon": "Users",
+      "color": "#14B8A6",
+      "isDiscretionary": false,
+      "isCustom": false,
+      "_id": "id_1792611704397_5041wac",
+      "id": "id_1792611704397_5041wac",
+      "createdAt": "2026-10-21T19:41:44.397Z",
+      "updatedAt": "2026-10-21T19:41:44.397Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Other expenses",
+      "type": "expense",
+      "icon": "MoreHorizontal",
+      "color": "#64748B",
+      "isDiscretionary": true,
+      "isCustom": false,
+      "_id": "id_1792611704398_wbhissx",
+      "id": "id_1792611704398_wbhissx",
+      "createdAt": "2026-10-21T19:41:44.398Z",
+      "updatedAt": "2026-10-21T19:41:44.398Z"
     }
   ],
   "transactions": [
@@ -3534,6 +3947,74 @@
       "id": "id_1792610042229_ov0rv81",
       "createdAt": "2026-10-21T19:14:02.229Z",
       "updatedAt": "2026-10-21T19:14:02.229Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "type": "expense",
+      "amount": 14000,
+      "currency": "INR",
+      "category": "Software & Cloud Tools",
+      "subcategory": "",
+      "date": "2026-10-21T19:41:44.427Z",
+      "accountId": "id_1792611704418_3va2ild",
+      "toAccountId": null,
+      "paymentMethod": "upi",
+      "description": "Server Subscriptions (Discounted)",
+      "notes": "",
+      "tags": [],
+      "receiptUrl": null,
+      "isDiscretionary": false,
+      "_id": "id_1792611704429_tsie1t8",
+      "id": "id_1792611704429_tsie1t8",
+      "createdAt": "2026-10-21T19:41:44.429Z",
+      "updatedAt": "2026-10-21T19:41:44.441Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "type": "expense",
+      "amount": 2500,
+      "currency": "INR",
+      "category": "Groceries",
+      "subcategory": "",
+      "date": "2026-10-21T19:41:44.432Z",
+      "accountId": null,
+      "toAccountId": null,
+      "paymentMethod": "card",
+      "description": "Organic Supermarket",
+      "notes": "Imported via bank statement CSV",
+      "tags": [
+        "imported-statement"
+      ],
+      "isDiscretionary": false,
+      "_id": "id_1792611704434_9tg68p0",
+      "id": "id_1792611704434_9tg68p0",
+      "createdAt": "2026-10-21T19:41:44.434Z",
+      "updatedAt": "2026-10-21T19:41:44.434Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "type": "expense",
+      "amount": 1200,
+      "currency": "INR",
+      "category": "Dining Out",
+      "subcategory": "",
+      "date": "2026-10-21T19:41:44.432Z",
+      "accountId": null,
+      "toAccountId": null,
+      "paymentMethod": "upi",
+      "description": "Lunch Bistro",
+      "notes": "Imported via bank statement CSV",
+      "tags": [
+        "imported-statement"
+      ],
+      "isDiscretionary": false,
+      "_id": "id_1792611704435_vyhoeal",
+      "id": "id_1792611704435_vyhoeal",
+      "createdAt": "2026-10-21T19:41:44.435Z",
+      "updatedAt": "2026-10-21T19:41:44.435Z"
     }
   ],
   "budgets": [
@@ -4147,6 +4628,85 @@
       "id": "id_1792610042251_8r8ioq2",
       "createdAt": "2026-10-21T19:14:02.251Z",
       "updatedAt": "2026-10-21T19:14:02.251Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Monthly Grocery & Meals",
+      "category": "Food and groceries",
+      "limitAmount": 8000,
+      "currency": "INR",
+      "period": "monthly",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2026-10-31T00:00:00.000Z",
+      "alertThresholds": [
+        50,
+        80,
+        100
+      ],
+      "_id": "id_1792611704401_2be4hnr",
+      "id": "id_1792611704401_2be4hnr",
+      "createdAt": "2026-10-21T19:41:44.401Z",
+      "updatedAt": "2026-10-21T19:41:44.401Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Local Commute & Fuel",
+      "category": "Transportation",
+      "limitAmount": 3500,
+      "currency": "INR",
+      "period": "monthly",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2026-10-31T00:00:00.000Z",
+      "alertThresholds": [
+        80,
+        100
+      ],
+      "_id": "id_1792611704402_xs931dl",
+      "id": "id_1792611704402_xs931dl",
+      "createdAt": "2026-10-21T19:41:44.402Z",
+      "updatedAt": "2026-10-21T19:41:44.402Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Shopping & Leisure",
+      "category": "Shopping",
+      "limitAmount": 5000,
+      "currency": "INR",
+      "period": "monthly",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2026-10-31T00:00:00.000Z",
+      "alertThresholds": [
+        70,
+        90,
+        100
+      ],
+      "_id": "id_1792611704403_e1gvylx",
+      "id": "id_1792611704403_e1gvylx",
+      "createdAt": "2026-10-21T19:41:44.403Z",
+      "updatedAt": "2026-10-21T19:41:44.403Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Cloud Infrastructure",
+      "category": "Software & Cloud Tools",
+      "limitAmount": 20000,
+      "currency": "INR",
+      "period": "monthly",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2026-10-31T00:00:00.000Z",
+      "alertThresholds": [
+        50,
+        80,
+        100
+      ],
+      "_id": "id_1792611704454_zxouaju",
+      "id": "id_1792611704454_zxouaju",
+      "createdAt": "2026-10-21T19:41:44.454Z",
+      "updatedAt": "2026-10-21T19:41:44.454Z"
     }
   ],
   "savingsGoals": [
@@ -4448,6 +5008,52 @@
       "id": "id_1792610042255_2pkcc4n",
       "createdAt": "2026-10-21T19:14:02.255Z",
       "updatedAt": "2026-10-21T19:14:02.255Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Emergency Fund (6 Months)",
+      "targetAmount": 150000,
+      "currentAmount": 35000,
+      "currency": "INR",
+      "targetDate": "2027-04-19T19:41:44.403Z",
+      "category": "Emergency",
+      "notes": "Automated disciplined savings for financial peace of mind.",
+      "contributions": [
+        {
+          "id": "contrib_1",
+          "amount": 5000,
+          "date": "2026-09-21T19:41:44.403Z",
+          "note": "Initial fund deposit"
+        }
+      ],
+      "_id": "id_1792611704403_vev8oj2",
+      "id": "id_1792611704403_vev8oj2",
+      "createdAt": "2026-10-21T19:41:44.403Z",
+      "updatedAt": "2026-10-21T19:41:44.403Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "Emergency Fund 2026",
+      "targetAmount": 200000,
+      "currentAmount": 50000,
+      "currency": "INR",
+      "targetDate": "2027-04-19T19:41:44.456Z",
+      "category": "General Savings",
+      "notes": "",
+      "contributions": [
+        {
+          "id": "c_1792611704458",
+          "amount": 50000,
+          "date": "2026-10-21T19:41:44.458Z",
+          "note": "Initial deposit"
+        }
+      ],
+      "_id": "id_1792611704458_mhy20uk",
+      "id": "id_1792611704458_mhy20uk",
+      "createdAt": "2026-10-21T19:41:44.458Z",
+      "updatedAt": "2026-10-21T19:41:44.458Z"
     }
   ],
   "bills": [
@@ -4603,6 +5209,23 @@
       "id": "id_1792610042197_e9nalvy",
       "createdAt": "2026-10-21T19:14:02.197Z",
       "updatedAt": "2026-10-21T19:14:02.197Z"
+    },
+    {
+      "userId": "id_1792611704377_a9rd92v",
+      "workspaceId": "id_1792611704378_tlfpt1n",
+      "name": "High-speed Fiber Broadband",
+      "amount": 999,
+      "currency": "INR",
+      "category": "Utilities",
+      "frequency": "monthly",
+      "nextDueDate": "2026-10-24T19:41:44.404Z",
+      "reminderDaysBefore": 3,
+      "status": "upcoming",
+      "autoRecordTransaction": false,
+      "_id": "id_1792611704404_em5f26e",
+      "id": "id_1792611704404_em5f26e",
+      "createdAt": "2026-10-21T19:41:44.405Z",
+      "updatedAt": "2026-10-21T19:41:44.405Z"
     }
   ],
   "notifications": [

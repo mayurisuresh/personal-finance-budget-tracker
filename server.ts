@@ -156,7 +156,10 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
+  // Ensure production mode when deployed on Render or when NODE_ENV is production
+  const isProduction = process.env.NODE_ENV === 'production' || process.env.RENDER === 'true';
+
+  if (!isProduction) {
     // In Dev: Mount Vite middleware
     // Explicitly configure HMR to bind to httpServer to avoid unrouted port 24678 WebSocket errors
     const isHmrDisabled = process.env.DISABLE_HMR === 'true';
@@ -165,6 +168,7 @@ async function startServer() {
       server: {
         middlewareMode: true,
         hmr: isHmrDisabled ? false : { server: httpServer },
+        allowedHosts: ['personal-finance-budget-tracker-fagn.onrender.com'],
       },
       appType: 'spa',
     });
