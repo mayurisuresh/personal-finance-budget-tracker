@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ChartJS } from '../utils/chartConfig';
 
 export type ThemeMode = 'light' | 'dark' | 'ocean' | 'forest' | 'warm';
-export type CurrencyCode = 'INR' | 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY';
+export type CurrencyCode = 'INR' | 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY' | 'AED';
 
 interface ThemeContextType {
   theme: ThemeMode;
@@ -105,6 +105,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     else if (c === 'EUR') locale = 'de-DE';
     else if (c === 'GBP') locale = 'en-GB';
     else if (c === 'JPY') locale = 'ja-JP';
+    else if (c === 'AED') locale = 'en-AE';
 
     try {
       return new Intl.NumberFormat(locale, {
@@ -121,6 +122,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         JPY: '¥',
         CAD: 'CA$',
         AUD: 'A$',
+        AED: 'AED ',
       };
       return `${symbols[c] || c + ' '}${num.toLocaleString()}`;
     }

@@ -439,6 +439,7 @@ export interface FinancialHealthScore {
   score: number;
   tier: 'Excellent' | 'Good' | 'Fair' | 'Needs Attention';
   summary: string;
+  hasSufficientData: boolean;
   breakdown: {
     savingsRate: { score: number; max: 25; valuePct: number; status: string; advice: string };
     budgetAdherence: { score: number; max: 25; withinLimitPct: number; status: string; advice: string };
@@ -450,12 +451,29 @@ export interface FinancialHealthScore {
 
 export function calculateFinancialHealthScore(userId: string, workspaceId: string): FinancialHealthScore {
   const accounts = db.find('accounts', a => a.userId === userId && (!workspaceId || a.workspaceId === workspaceId));
+  const allTxs = db.find('transactions', t => t.userId === userId && (!workspaceId || t.workspaceId === workspaceId));
+
+  // If insufficient information exists
+  if (accounts.length === 0 && allTxs.length === 0) {
+    return {
+      score: 0,
+      tier: 'Needs Attention',
+      hasSufficientData: false,
+      summary: 'Not enough data to calculate a reliable score.',
+      breakdown: {
+        savingsRate: { score: 0, max: 25, valuePct: 0, status: 'No Data', advice: 'Add transactions or income to compute savings velocity.' },
+        budgetAdherence: { score: 0, max: 25, withinLimitPct: 0, status: 'No Data', advice: 'Configure budgets to measure spending limits.' },
+        liquidityBuffer: { score: 0, max: 25, monthsOfRunway: 0, status: 'No Data', advice: 'Connect or add accounts to monitor cash buffer.' },
+        billPunctuality: { score: 0, max: 25, overdueCount: 0, status: 'No Data', advice: 'Add recurring bills to track punctuality.' },
+      },
+      recommendations: ['Add an account or record your first transaction to unlock your personalized score.'],
+    };
+  }
+
   const liquidBalance = accounts.reduce((sum, a) => {
     const val = Number(a.balance) || 0;
     return a.type === 'credit' ? sum - val : sum + val;
   }, 0);
-
-  const allTxs = db.find('transactions', t => t.userId === userId && (!workspaceId || t.workspaceId === workspaceId));
   
   // Last 30 days
   const now = new Date();
@@ -608,6 +626,7 @@ export function calculateFinancialHealthScore(userId: string, workspaceId: strin
   return {
     score: totalScore,
     tier,
+    hasSufficientData: true,
     summary: `Your composite financial health index is ${totalScore}/100 (${tier}), reflecting ${savingsStatus.toLowerCase()} savings velocity, ${budgetStatus.toLowerCase()}, and ${monthsOfRunway} months of liquid reserve.`,
     breakdown: {
       savingsRate: { score: savingsRateScore, max: 25, valuePct: savingsRatePct, status: savingsStatus, advice: savingsAdvice },

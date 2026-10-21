@@ -127,10 +127,13 @@ class DatabaseStore {
           for (const item of localList) {
             try {
               const docToSave = { ...item };
-              if (!docToSave._id && docToSave.id) docToSave._id = docToSave.id;
+              const idToSave = String(docToSave._id || docToSave.id || 'id_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9));
+              docToSave._id = idToSave;
+              docToSave.id = idToSave;
+              const { _id: _, ...fieldsToSet } = docToSave;
               await Model.findOneAndUpdate(
-                { _id: docToSave._id },
-                { $set: docToSave },
+                { _id: idToSave },
+                { $set: fieldsToSet, $setOnInsert: { _id: idToSave } },
                 { upsert: true, new: true }
               );
             } catch (saveErr: any) {
@@ -202,9 +205,10 @@ class DatabaseStore {
     if (mongoose.connection.readyState === 1) {
       const Model = collectionModelMap[collection];
       if (Model) {
+        const { _id: insertId, ...fields } = newDoc;
         Model.findOneAndUpdate(
-          { _id: newDoc._id },
-          { $set: newDoc },
+          { _id: String(insertId) },
+          { $set: fields, $setOnInsert: { _id: String(insertId) } },
           { upsert: true, new: true }
         ).catch((err: any) => {
           console.error(`[DB-Atlas] Error persisting insert to ${String(collection)}:`, err.message);
@@ -239,9 +243,10 @@ class DatabaseStore {
     if (mongoose.connection.readyState === 1) {
       const Model = collectionModelMap[collection];
       if (Model) {
+        const { _id: updateId, ...fields } = updated;
         Model.findOneAndUpdate(
-          { $or: [{ _id: updated._id }, { id: updated.id }] },
-          { $set: updated },
+          { _id: String(updateId) },
+          { $set: fields },
           { new: true }
         ).catch((err: any) => {
           console.error(`[DB-Atlas] Error updating ${String(collection)}:`, err.message);
@@ -264,8 +269,8 @@ class DatabaseStore {
     if (mongoose.connection.readyState === 1) {
       const Model = collectionModelMap[collection];
       if (Model) {
-        const targetId = target._id || target.id;
-        Model.deleteOne({ $or: [{ _id: targetId }, { id: targetId }] }).catch((err: any) => {
+        const targetId = String(target._id || target.id);
+        Model.deleteOne({ _id: targetId }).catch((err: any) => {
           console.error(`[DB-Atlas] Error deleting from ${String(collection)}:`, err.message);
         });
       }
@@ -292,7 +297,7 @@ class DatabaseStore {
       if (mongoose.connection.readyState === 1 && deletedIds.length > 0) {
         const Model = collectionModelMap[collection];
         if (Model) {
-          Model.deleteMany({ $or: [{ _id: { $in: deletedIds } }, { id: { $in: deletedIds } }] }).catch((err: any) => {
+          Model.deleteMany({ _id: { $in: deletedIds } }).catch((err: any) => {
             console.error(`[DB-Atlas] Error bulk deleting from ${String(collection)}:`, err.message);
           });
         }

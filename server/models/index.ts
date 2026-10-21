@@ -3,7 +3,8 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 // ==========================================
 // 1. USER MODEL
 // ==========================================
-export interface IUser extends Document {
+export interface IUser extends Document<string> {
+  _id: string;
   name: string;
   email: string;
   passwordHash: string;
@@ -25,6 +26,7 @@ export interface IUser extends Document {
 
 const UserSchema = new Schema<IUser>(
   {
+    _id: { type: String, required: true },
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
     passwordHash: { type: String, required: true },
@@ -53,7 +55,8 @@ const UserSchema = new Schema<IUser>(
 // ==========================================
 // 2. TRANSACTION MODEL
 // ==========================================
-export interface ITransaction extends Document {
+export interface ITransaction extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   type: 'expense' | 'income' | 'transfer';
@@ -78,6 +81,7 @@ export interface ITransaction extends Document {
 
 const TransactionSchema = new Schema<ITransaction>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String, index: true },
     type: { type: String, enum: ['expense', 'income', 'transfer'], required: true },
@@ -107,7 +111,8 @@ TransactionSchema.index({ userId: 1, workspaceId: 1, date: -1 });
 // ==========================================
 // 3. ACCOUNT / WALLET MODEL
 // ==========================================
-export interface IAccount extends Document {
+export interface IAccount extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   name: string;
@@ -125,6 +130,7 @@ export interface IAccount extends Document {
 
 const AccountSchema = new Schema<IAccount>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String, index: true },
     name: { type: String, required: true },
@@ -145,7 +151,8 @@ AccountSchema.index({ userId: 1, workspaceId: 1 });
 // ==========================================
 // 4. BUDGET MODEL
 // ==========================================
-export interface IBudget extends Document {
+export interface IBudget extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   category: string;
@@ -159,6 +166,7 @@ export interface IBudget extends Document {
 
 const BudgetSchema = new Schema<IBudget>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String, index: true },
     category: { type: String, required: true },
@@ -175,7 +183,8 @@ BudgetSchema.index({ userId: 1, category: 1 }, { unique: false });
 // ==========================================
 // 5. SAVINGS GOAL MODEL
 // ==========================================
-export interface ISavingsGoal extends Document {
+export interface ISavingsGoal extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   name: string;
@@ -191,6 +200,7 @@ export interface ISavingsGoal extends Document {
 
 const SavingsGoalSchema = new Schema<ISavingsGoal>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String, index: true },
     name: { type: String, required: true },
@@ -209,7 +219,8 @@ SavingsGoalSchema.index({ userId: 1, workspaceId: 1 });
 // ==========================================
 // 6. BILL / RECURRING PAYMENT MODEL
 // ==========================================
-export interface IBill extends Document {
+export interface IBill extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   title: string;
@@ -227,6 +238,7 @@ export interface IBill extends Document {
 
 const BillSchema = new Schema<IBill>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String, index: true },
     title: { type: String, required: true },
@@ -247,7 +259,8 @@ BillSchema.index({ userId: 1, dueDate: 1 });
 // ==========================================
 // 7. NOTIFICATION MODEL
 // ==========================================
-export interface INotification extends Document {
+export interface INotification extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   title: string;
@@ -261,6 +274,7 @@ export interface INotification extends Document {
 
 const NotificationSchema = new Schema<INotification>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String },
     title: { type: String, required: true },
@@ -278,7 +292,8 @@ NotificationSchema.index({ userId: 1, read: 1 });
 // ==========================================
 // 8. WORKSPACE MODEL
 // ==========================================
-export interface IWorkspace extends Document {
+export interface IWorkspace extends Document<string> {
+  _id: string;
   name: string;
   type: 'personal' | 'business';
   ownerId: string;
@@ -295,6 +310,7 @@ export interface IWorkspace extends Document {
 
 const WorkspaceSchema = new Schema<IWorkspace>(
   {
+    _id: { type: String, required: true },
     name: { type: String, required: true },
     type: { type: String, enum: ['personal', 'business'], default: 'personal' },
     ownerId: { type: String, required: true, index: true },
@@ -314,7 +330,8 @@ const WorkspaceSchema = new Schema<IWorkspace>(
 // ==========================================
 // 9. CATEGORY MODEL
 // ==========================================
-export interface ICategory extends Document {
+export interface ICategory extends Document<string> {
+  _id: string;
   userId?: string;
   workspaceId?: string;
   name: string;
@@ -327,6 +344,7 @@ export interface ICategory extends Document {
 
 const CategorySchema = new Schema<ICategory>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, index: true },
     workspaceId: { type: String },
     name: { type: String, required: true },
@@ -341,7 +359,8 @@ const CategorySchema = new Schema<ICategory>(
 // ==========================================
 // 10. IMPORTED STATEMENT MODEL
 // ==========================================
-export interface IStatement extends Document {
+export interface IStatement extends Document<string> {
+  _id: string;
   userId: string;
   workspaceId?: string;
   filename: string;
@@ -353,6 +372,7 @@ export interface IStatement extends Document {
 
 const StatementSchema = new Schema<IStatement>(
   {
+    _id: { type: String, required: true },
     userId: { type: String, required: true, index: true },
     workspaceId: { type: String },
     filename: { type: String, required: true },

@@ -574,11 +574,12 @@ export const SettingsPage: React.FC = () => {
           >
             <option value="INR">₹ INR (Indian Rupee)</option>
             <option value="USD">$ USD (US Dollar)</option>
-            <option value="EUR">€ EUR (Euro)</option>
             <option value="GBP">£ GBP (British Pound)</option>
+            <option value="EUR">€ EUR (Euro)</option>
+            <option value="JPY">¥ JPY (Japanese Yen)</option>
+            <option value="AED">د.إ AED (UAE Dirham)</option>
             <option value="CAD">CA$ CAD (Canadian Dollar)</option>
             <option value="AUD">A$ AUD (Australian Dollar)</option>
-            <option value="JPY">¥ JPY (Japanese Yen)</option>
           </select>
         </div>
 

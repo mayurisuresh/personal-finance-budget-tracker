@@ -6,8 +6,8 @@ import { seedUserDefaults } from '../services/seedService.js';
 
 const router = Router();
 
-// REGISTER
-router.post('/register', async (req: Request, res: Response): Promise<void> => {
+// REGISTER / SIGNUP
+router.post(['/register', '/signup'], async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, password, financialProfile, financialPriorities, currency } = req.body;
 

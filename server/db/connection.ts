@@ -69,8 +69,8 @@ export async function initDatabaseConnection(): Promise<{ connected: boolean; mo
 
       await mongoose.connect(uri.trim(), {
         dbName: 'personal_finance',
-        serverSelectionTimeoutMS: 5000,
-        connectTimeoutMS: 10000,
+        serverSelectionTimeoutMS: 3000,
+        connectTimeoutMS: 3000,
       });
 
       isMongoConnected = mongoose.connection.readyState === 1;

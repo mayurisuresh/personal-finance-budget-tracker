@@ -280,8 +280,8 @@ router.get('/:id', (req: AuthenticatedRequest, res: Response): void => {
   res.json({ success: true, transaction: tx });
 });
 
-// UPDATE TRANSACTION
-router.patch('/:id', (req: AuthenticatedRequest, res: Response): void => {
+// UPDATE TRANSACTION (PUT & PATCH)
+const updateTransactionHandler = (req: AuthenticatedRequest, res: Response): void => {
   try {
     const existing = db.findById('transactions', req.params.id);
     if (!existing || existing.userId !== req.user._id) {
@@ -343,7 +343,10 @@ router.patch('/:id', (req: AuthenticatedRequest, res: Response): void => {
   } catch (err: any) {
     res.status(500).json({ success: false, message: 'Failed to update transaction', error: err.message });
   }
-});
+};
+
+router.put('/:id', updateTransactionHandler);
+router.patch('/:id', updateTransactionHandler);
 
 // DELETE TRANSACTION
 router.delete('/:id', (req: AuthenticatedRequest, res: Response): void => {

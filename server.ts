@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -35,7 +36,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const httpServer = http.createServer(app);
 
 // Security & Parsing Middlewares
@@ -78,6 +79,18 @@ app.post('/api/health/test-db', async (req, res) => {
     // If successful and it matches current env or new string, connect main mongoose client
     if (connectionString) {
       process.env.MONGODB_URI = connectionString;
+      try {
+        const envPath = path.resolve(__dirname, '.env');
+        let envContent = fs.existsSync(envPath) ? fs.readFileSync(envPath, 'utf-8') : '';
+        if (envContent.includes('MONGODB_URI=')) {
+          envContent = envContent.replace(/MONGODB_URI=.*/g, `MONGODB_URI=${connectionString}`);
+        } else {
+          envContent += `\nMONGODB_URI=${connectionString}\n`;
+        }
+        fs.writeFileSync(envPath, envContent.trim() + '\n', 'utf-8');
+      } catch (err: any) {
+        console.warn('[DB] Could not persist to .env:', err.message);
+      }
     }
     await initDatabaseConnection();
     const syncRes = await db.syncWithAtlas();
@@ -140,8 +153,6 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 async function startServer() {
-  await initDatabaseConnection();
-
   if (process.env.NODE_ENV !== 'production') {
     // In Dev: Mount Vite middleware
     // Explicitly configure HMR to bind to httpServer to avoid unrouted port 24678 WebSocket errors
@@ -164,8 +175,13 @@ async function startServer() {
     });
   }
 
-  httpServer.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+  httpServer.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server listening on http://0.0.0.0:${PORT}`);
+  });
+
+  // Non-blocking database connection attempt in background so dev server starts immediately
+  initDatabaseConnection().catch(err => {
+    console.warn('[DB] Background MongoDB initialization caught:', err?.message || err);
   });
 }
 

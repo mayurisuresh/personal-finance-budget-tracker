@@ -341,11 +341,12 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ currentTab, onNavigate, ch
             >
               <option value="INR">₹ INR</option>
               <option value="USD">$ USD</option>
-              <option value="EUR">€ EUR</option>
               <option value="GBP">£ GBP</option>
+              <option value="EUR">€ EUR</option>
+              <option value="JPY">¥ JPY</option>
+              <option value="AED">د.إ AED</option>
               <option value="CAD">CA$ CAD</option>
               <option value="AUD">A$ AUD</option>
-              <option value="JPY">¥ JPY</option>
             </select>
 
             {/* Notification Bell */}
